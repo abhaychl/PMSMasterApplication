@@ -1,0 +1,80 @@
+﻿@using PMSMaster.Utility;
+@model IEnumerable<PMSMaster.Entity.Models.RateCard>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!---bredcrumb start-->
+<div class="viewport-header">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb has-arrow">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="#">Manage Rate Card</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Rate Card List</li>
+        </ol>
+    </nav>
+</div>
+<!--breadcrumb end-->
+<!--Body Data-->
+<div class="row">
+    <div class="col-12 pt-1 pb-4 d-flex justify-content-between align-items-center">
+        <h4>Rate Card List</h4>
+        <a href="@Url.Action("Create", "RateCard", new { area="Admin"})" class="btn btn-blue  w-80 h-35" style="text-align:right;">Add New</a>
+    </div>
+</div>
+<!--table row-->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="grid">
+            <div class="grid-header mb-0">
+                <p class="card-title">Prospects Reached Out Today</p>
+            </div>
+            <div class="grid-body pb-4">
+                <div class="item-wrapper">
+                    <div class="table-responsive">
+                        <table id="Invested_proposals_table" class="data-table table table-striped dataTable dataTfullheight" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>S.NO.</th>
+                                    <th>Service</th>                                    
+                                    <th>Source Language</th>
+                                    <th>Target Language</th>
+                                    <th>Currency</th>
+                                    <th>Price</th>
+                                    <th class="text-left">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>                                
+                                @foreach (var item in Model)
+                                {
+                                    string btnClass = item.Status ? "btn btn-success  btn-xs" : "btn btn-danger  btn-xs";
+                                    <tr>
+                                        <td>@item.Services.Name</td>
+                                        <td>@(((LanguageEnum)item.SourceLanguageId).GetDisplayText())</td>
+                                        <td>@(((LanguageEnum)item.TargetLanguageId).GetDisplayText())</td>
+                                        <td>@item.Currency.Name</td>
+                                        <td>@item.Price</td>
+                                        <td><button type="button" class="@btnClass">Active</button></td>
+                                        <td>
+                                            <a href="@Url.Action("Edit","RateCard",new { Id=item.RateCardId, Area ="Admin"})" class="btn btn-primary btn-xs has-icon btn-xs"><i class="mdi mdi-pencil-box-outline"></i> Edit</a>
+                                            <a href="@Url.Action("Delete","RateCard",new { Id=item.RateCardId, Area ="Admin"})" class="btn btn-danger btn-xs has-icon btn-xs"><i class="mdi mdi-delete m-0"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---Body Data end-->

@@ -1,0 +1,79 @@
+﻿@model PMSMaster.Entity.Models.Language
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!---bredcrumb start-->
+<div class="viewport-header">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb has-arrow">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="#">Manage Language</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Add Language</li>
+        </ol>
+    </nav>
+</div>
+<!--breadcrumb end-->
+<!--Body Data-->
+<div class="row">
+    <div class="col-12 pt-1 pb-4 d-flex justify-content-between align-items-center">
+        <h4>Add New Language</h4> <a href="@Url.Action("Index", "Language", new { area="Admin"})" class="btn btn-blue  w-80 h-35"> <button class="btn btn-blue  w-80 h-35" data-toggle="modal" data-target="#termcondition">View All Language</button> </a>
+        </div>
+</div>
+<!--table row-->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="grid">
+            <div class="d-flex justify-content-between align-items-center grid-header mb-0">
+                <p class="card-title">Add New Language</p>
+            </div>
+            <div class="grid-body pb-4">
+                <div class="item-wrapper">
+                    @using (Html.BeginForm("Create", "Language", FormMethod.Post))
+                    {
+                        <div class="row">
+                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                <label for="inputEmail1">Language Name</label>
+
+                                @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Name" })
+                                <span class="YError">@Html.ValidationMessageFor(x => x.Name)</span>
+                            </div>
+
+                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                <label for="inputEmail1">Language Type Name</label><br />
+                                <label class="form-check-label" style="width: 73px;margin-left: 20px;">
+                                    @Html.RadioButton("LanguageType", "1", true, new { @class = "form-check-input" })
+                                 
+                                    Indian 
+                                </label>
+                                <label class="form-check-label">
+                                    @Html.RadioButton("LanguageType", "2", false, new { @class = "form-check-input" })
+
+                                    International
+                                </label>
+                                <span class="YError">@Html.ValidationMessageFor(x => x.LanguageType)</span>
+                            </div>
+
+                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                <label for="inputEmail1">Active</label>
+                                <div class="form-inline">
+                                    @Html.CheckBoxFor(x => x.Status, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-sm btn-primary">ADD NEW Language</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---Body Data end-->

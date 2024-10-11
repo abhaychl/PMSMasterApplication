@@ -1,0 +1,100 @@
+﻿@model PMSMaster.Web.Models.Login
+
+@{
+    ViewData["Title"] = "Login";
+    // Layout = "Detail";
+}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    @* <title>FundTq</title> *@
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/vendors/iconfonts/mdi/css/materialdesignicons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/shared/style.css">
+    <!-- Layout style -->
+    <link rel="stylesheet" href="~/css/demo_1/style.css">
+    <link rel="stylesheet" href="~/css/main-style.css">
+
+</head>
+
+<body class="header-fixed">
+    <div class="login_header">
+        <h3>LEAD MANAGEMENT SYSTEM</h3>
+        <h3>
+            <a href=""><i class="mdi mdi-email link-icon"></i> itsupport@crystalhues.com</a>
+            <a href=""><i class="mdi mdi-phone link-icon"></i> 1800-906-879</a>
+        </h3>
+    </div>
+    <div class="authentication-theme auth-style_1">
+        <div class="row">
+            <div class="col-12 logo-section">
+                <a href="../../index.html" class="logo">
+                    <img class="logo" src="~/images/images/logo.png" alt="">
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-5 col-md-7 col-sm-9 col-11 mx-auto">
+                <div class="grid">
+                    <div class="grid-body">
+                        <div class="row">
+                            <div class="col-lg-7 col-md-8 col-sm-9 col-12 mx-auto form-wrapper">
+                                @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+                                {
+                                    <div class="form-group input-rounded">
+                                        @* <input type="text" class="form-control" placeholder="Username"> *@
+                                        <input type="text" class="form-control" id="Username" name="Username" placeholder="Username" />
+                                        @Html.ValidationMessageFor(m => m.Username)
+                                    </div>
+                                    <div class="form-group input-rounded">
+                                        @* <input type="password" class="form-control" placeholder="Password"> *@
+                                        <input type="password" class="form-control" id="Password" name="Password" placeholder="Password" />
+                                        @Html.ValidationMessageFor(m => m.Password)
+                                    </div>
+                                    <div class="form-inline">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" class="form-check-input">Remember me <i class="input-frame"></i>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-block"> LOGIN </button>
+                                }
+                                <div class="signup-link">
+                                  @*   <p>Don't have an account yet?</p>
+                                    <a href="#">Sign Up</a> *@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="auth_footer">
+            <p class="text-muted text-center">© Crystalhues 2023</p>
+        </div>
+    </div>
+    <!--page body ends -->
+    <!-- SCRIPT LOADING START FORM HERE /////////////-->
+    <!-- plugins:js -->
+    <script src="~/vendors/js/core.js"></script>
+    <script src="~/vendors/js/core.js"></script>
+    <!-- endinject -->
+    <!-- Vendor Js For This Page Ends-->
+    <!-- <script src="~/vendors/apexcharts/apexcharts.min.js"></script>
+    <script src="~/vendors/chartjs/Chart.min.js"></script>
+    <script src="~/js/charts/chartjs.addon.js"></script> -->
+    <!-- Vendor Js For This Page Ends-->
+    <!-- build:js -->
+    <script src="~/js/template.js"></script>
+    <script src="~/js/dashboard.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="~/js/main.js"></script>
+
+    <!-- endbuild -->
+</body>
+</html>

@@ -1,0 +1,216 @@
+﻿@model PMSMaster.Entity.Models.KPIRule
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section scripts
+    {
+    <script type="text/javascript">
+
+        function addNewContact() {
+            var kpiIndicatorId = $('#KPIIndicatorId').val();
+            var officeLocationText = $('#KPIIndicatorId option:selected').text(); // Get the selected option text
+            var quantity = $('#Quantity').val();
+            var points = $('#Points').val();
+
+            // Create a new row
+            var newRow = $("<tr></tr>");
+            newRow.append('<td id="' + kpiIndicatorId + '">' + officeLocationText + '</td>');
+            newRow.append('<td>' + quantity + '</td>');
+            newRow.append('<td>' + points + '</td>');
+            newRow.append('<td><button type="button" class="btn btn-danger btn-xs has-icon btn-xs" onclick="removeRow(this)"><i class="mdi mdi-delete-forever m-0"></i></button ><button type="button" class="btn btn-primary btn-xs has-icon btn-xs quoteiteam_edit" onclick="editContact(this)"><i class="mdi mdi-border-color m-0"></i></button></td>');
+
+            // Append the new row to the table
+            $('#multipleContactPerson tbody').append(newRow);
+        }
+
+        function editContact(button) {
+            var row = $(button).closest('tr');
+
+            var kpiIndicatorId = row.find('td:eq(0)').attr('id'); // Assuming OfficeLocation ID is stored in the id attribute
+            var quantity = row.find('td:eq(1)').text(); // Assuming Name is in the second column
+            var points = row.find('td:eq(2)').text(); // Assuming Name is in the second column
+
+            $('#addContactDiv').find('[name="KPIIndicatorId"]').val(kpiIndicatorId);
+            $('#addContactDiv').find('[name="Quantity"]').val(quantity);
+            $('#addContactDiv').find('[name="Points"]').val(points);
+
+            // Remove the row from the table
+            row.remove();
+        }
+
+        $('#submitButton').click(function () {
+            var clientContactPersons = [];
+            var pointsSum = 0;
+
+            // Iterate through each row in the table
+            $('#multipleContactPerson tbody tr').each(function () {
+                var row = $(this);
+                var clientContactPerson = {
+                    KPIIndicatorId: row.find('td:eq(0)').attr('id'),
+                    Quantity: row.find('td:eq(1)').text(),
+                    Points: row.find('td:eq(2)').text()
+                };
+
+                pointsSum += parseFloat(row.find('td:eq(2)').text());
+
+                clientContactPersons.push(clientContactPerson);
+            });
+
+            // Check if pointsSum is equal to 100
+            if (pointsSum !== 100) {
+                // Display an error message or alert
+                alert('The sum of points should be 100.');
+                // Stop further execution
+                return;
+            }
+
+            // Serialize the clientContactPersons array to JSON
+            var clientContactPersonJson = JSON.stringify(clientContactPersons);
+
+            // Assign the JSON data to the hidden input field
+            $('#clientContactPersonJson').val(clientContactPersonJson);
+
+            // Submit the form
+            $('#yourFormId').submit();
+        });
+
+
+    </script>
+    }
+<!---bredcrumb start-->
+<div class="viewport-header">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb has-arrow">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="#">Manage KPI Rule</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Add KPI Rule</li>
+        </ol>
+    </nav>
+</div>
+<!--breadcrumb end-->
+<!--Body Data-->
+<div class="row">
+    <div class="col-12 pt-1 pb-4 d-flex justify-content-between align-items-center">
+        <h4>Add New KPI Rule</h4> <a href="@Url.Action("Index", "KPIRule", new { area="Admin"})" class="btn btn-blue  w-80 h-35"> <button class="btn btn-blue  w-80 h-35" data-toggle="modal" data-target="#termcondition">View All KPI Rule</button> </a>
+    </div>
+</div>
+<!--table row-->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="grid">
+            <div class="d-flex justify-content-between align-items-center grid-header mb-0">
+                <p class="card-title">Add New KPI Rule</p>
+            </div>
+            <div class="grid-body pb-4">
+                <div class="item-wrapper">
+                    @using (Html.BeginForm("Edit", "KPIRule", FormMethod.Post, new { id = "yourFormId" }))
+                    {
+                        @Html.HiddenFor(m => m.KPIRuleId)
+                        <input type="hidden" name="ClientContactPersonJson" id="clientContactPersonJson" />
+                        <div class="row">
+                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                <label for="inputEmail1">Select Role</label>
+
+                                @Html.DropDownListFor(x => x.RoleId, new SelectList(ViewBag.AllRoles, "RoleId", "Name"), "Select Role", new { @class = "form-control" })
+                                <span class="YError">@Html.ValidationMessageFor(x => x.RoleId)</span>
+                            </div>
+                        </div>
+
+                        <!--2-->
+                        <div class="col-lg-12 mb-3">
+                            <div class="grid">
+                                <div class="grid-body pb-4">
+                                    <div class="item-wrapper">
+                                        <!--multi contact persion grid-->
+                                        <div class="contact-gridwrapper">
+                                            <div class="row">
+                                                <div class="col-12 pt-1 pb-4 d-flex justify-content-between align-items-center"><h6>Set KPI Rule for Role <small>(All points sum should be 100)</small></h6> </div>
+                                            </div>
+
+                                            <div class="grid firstaddbox multiofficegrid" id="addContactDiv">
+
+                                                <div class="d-flex justify-content-between align-items-center grid-header mb-0">
+                                                    <p class="card-title">KPI Rule</p>
+                                                    <button class="btn btn-red w-80 h-35 contactremove" type="button"><i class="mdi mdi-close"></i></button>
+                                                </div>
+                                                <div class="grid-body pb-4">
+                                                    <div class="item-wrapper bg-gray">
+                                                        <div class="row">
+                                                            <div class="form-group col-md-4 col-sm-4 col-xs-12">
+                                                                <label for="inputEmail1">KPI Indicator</label>
+                                                                <select class="form-control" name="KPIIndicatorId" id="KPIIndicatorId">
+                                                                    <option>Select KPI Indicator</option>
+                                                                    @foreach (var country in ViewBag.AllKPIIndicator)
+                                                                    {
+                                                                        <option value="@country.KPIIndicatorId">@country.Title</option>
+                                                                    }
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-md-4 col-sm-4 col-xs-12">
+                                                                <label for="inputEmail1">Quantity</label>
+                                                                <input type="text" class="form-control" id="Quantity" placeholder="Quantity" name="Quantity">
+                                                            </div>
+                                                            <div class="form-group col-md-4 col-sm-4 col-xs-12">
+                                                                <label for="inputEmail1">Points</label>
+                                                                <input type="text" class="form-control" id="Points" placeholder="Points" name="Points">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  text-right">
+                                                                <button class="btn btn-blue  w-80 h-35 contactclone" onclick="addNewContact()" type="button">Add More Rule</button>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <hr />
+                                            <div class="table-responsive" id="multipleContactPerson">
+                                                <table class="table table-striped normaltable text-center" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>KPI Indicator</th>
+                                                            <th>Quantity</th>
+                                                            <th>Points</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var item in Model.KPIRuleIndicator)
+                                                        {
+                                                            <tr>
+                                                                <td id="@item.KPIIndicatorId" >@item.KPIIndicator?.Title</td>
+                                                                <td>@item.Quantity</td>
+                                                                <td>@item.Points</td>
+                                                                <td><button type="button" class="btn btn-danger btn-xs has-icon  mr-1" onclick="removeRow(this)"><i class="mdi mdi-delete-forever m-0"></i></button><button type="button" class="btn btn-primary btn-xs has-icon btn-xs quoteiteam_edit" onclick="editContact(this)"><i class="mdi mdi-border-color m-0"></i></button></td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button id="submitButton" type="button" class="btn btn-sm btn-primary">ADD NEW KPI Rule</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---Body Data end-->

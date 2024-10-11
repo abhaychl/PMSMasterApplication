@@ -1,0 +1,282 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--Body Data-->
+<div class="row">
+    <div class="col-12 pt-1 pb-4"><h4>Dashboard</h4>
+       @*  <p class="text-gray">Welcome @ViewBag.UserName</p> *@
+        </div>
+</div>
+<!--Dashboard data-->
+<div class="row">
+    <div class="col-md-3 col-sm-6 col-6 equel-grid">
+        <div class="grid" style="background: linear-gradient(90deg, rgba(33,212,253,1) 0%, rgba(158,62,254,1) 100%);">
+            <div class="grid-body text-white">
+                <div class="d-flex justify-content-between">
+                    <p>30%</p>
+                    <p>+06.2%</p>
+                </div>
+                <p class="text-white">Yearly Projects</p>
+               @*  <div class="wrapper w-50 mt-4">
+                    <canvas height="45" id="stat-line_1"></canvas>
+                </div> *@
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6 col-6 equel-grid">
+        <div class="grid" style="background: linear-gradient(90deg, rgb(42 245 152) 0%, rgb(13 185 221) 100%);">
+            <div class="grid-body text-white">
+                <div class="d-flex justify-content-between">
+                    <p>43%</p>
+                    <p>+15.7%</p>
+                </div>
+                <p class="text-white">Total Lead</p>
+                @* <div class="wrapper w-50 mt-4">
+                    <canvas height="45" id="stat-line_2"></canvas>
+                </div> *@
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6 col-6 equel-grid">
+        <div class="grid" style="background: linear-gradient(90deg, rgb(250 112 154) 0%, rgb(253 207 78) 100%);">
+            <div class="grid-body text-white">
+                <div class="d-flex justify-content-between">
+                    <p>23%</p>
+                    <p>+02.7%</p>
+                </div>
+                <p class="text-white">Total Revenue</p>
+                @* <div class="wrapper w-50 mt-4">
+                    <canvas height="45" id="stat-line_3"></canvas>
+                </div> *@
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6 col-6 equel-grid">
+        <div class="grid" style="background: linear-gradient(90deg, rgb(67 180 255) 0%, rgb(226 135 208) 100%);">
+            <div class="grid-body text-white">
+                <div class="d-flex justify-content-between">
+                    <p>75%</p>
+                    <p>- 53.34%</p>
+                </div>
+                <p class="text-white">Total Sales</p>
+              @*   <div class="wrapper w-50 mt-4">
+                    <canvas height="45" id="stat-line_4"></canvas>
+                </div> *@
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--table row-->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="grid">
+            <div class="d-flex justify-content-between align-items-center grid-header mb-0">
+                <p class="card-title">Meetings Scheduled Today</p>
+            </div>
+            <div class="grid-body pb-4">
+                <div class="item-wrapper">
+                    <div class="table-responsive">
+                        <table id="Invested_proposals_table" class="data-table table table-striped dataTable dataTfullheight" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>CLIENT NAME</th>
+                                    <th>DESIGNATION</th>
+                                    <th>COMPANY NAME</th>
+                                    <th>MEETING DATE</th>
+                                    <th>MEETING TIME</th>
+                                    <th>MEETING AGENDA</th>
+                                    <th class="text-left">ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Vijay Mallya</td>
+                                    <td>Procurement Manager</td>
+                                    <td>Kingfisher Enterprises</td>
+                                    <td>04/04/22</td>
+                                    <td>
+                                        1430 Hours
+                                    </td>
+                                    <td>
+                                        Pitching
+                                    </td>
+                                    <td><a href="" data-toggle="modal" data-target="#termcondition" class="btn btn-primary btn-xs has-icon btn-xs"><i class="mdi mdi-pencil-box-outline"></i> Edit</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Priya Sherawat</td>
+                                    <td>Language Lead</td>
+                                    <td>Ranbaxy</td>
+                                    <td>03/04/22</td>
+                                    <td>
+                                        1600 Hours
+                                    </td>
+                                    <td>
+                                        Relationship Building
+                                    </td>
+                                    <td><a href="" data-toggle="modal" data-target="#termcondition" class="btn btn-primary btn-xs has-icon btn-xs"><i class="mdi mdi-pencil-box-outline"></i> Edit</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Hakeem Chhotela</td>
+                                    <td>Assistant Sourcing Manager</td>
+                                    <td>Sun Pharma</td>
+                                    <td>02/04/22</td>
+                                    <td>
+                                        1730 Hours
+                                    </td>
+                                    <td>
+                                        Briefing Session
+                                    </td>
+                                    <td><a href="" data-toggle="modal" data-target="#termcondition" class="btn btn-primary btn-xs has-icon btn-xs"><i class="mdi mdi-pencil-box-outline"></i> Edit</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="grid">
+            <div class="d-flex justify-content-between grid-header  mb-0">
+                <p class="card-title">Prospect Follow-Ups This Week</p>
+            </div>
+            <div class="grid-body pb-4">
+                <div class="item-wrapper">
+                    <div class="table-responsive">
+                        <table id="Invested_proposals_table" class="data-table table table-striped dataTable dataTfullheight" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>CLIENT NAME</th>
+                                    <th>DESIGNATION</th>
+                                    <th>COMPANY NAME</th>
+                                    <th>LEAD STATUS</th>
+                                    <th>LAST ENGAGED</th>
+                                    <th>COMMENTS</th>
+                                    <th class="text-left">ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Vijay Mallya</td>
+                                    <td>Procurement Manager</td>
+                                    <td>Kingfisher Enterprises</td>
+                                    <td><button type="button" class="btn btn-success  btn-xs">Cold</button></td>
+                                    <td>
+                                        04/04/22
+                                    </td>
+                                    <td>Share the company credentials</td>
+                                    <td><a href="" data-toggle="modal" data-target="#termcondition" class="btn btn-primary btn-xs has-icon btn-xs"><i class="mdi mdi-pencil-box-outline"></i> Edit</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Paresh Rawal</td>
+                                    <td>General Manager</td>
+                                    <td>Tesla Tractors</td>
+                                    <td><button type="button" class="btn btn-danger  btn-xs">Hot</button></td>
+                                    <td>
+                                        03/04/22
+                                    </td>
+                                    <td>Follow up with him on call on 5th April. </td>
+                                    <td><a href="" data-toggle="modal" data-target="#termcondition" class="btn btn-primary btn-xs has-icon btn-xs"><i class="mdi mdi-pencil-box-outline"></i> Edit</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Harshita Chaddha</td>
+                                    <td>Assistant Sourcing Manager</td>
+                                    <td>Indegene Pharma Research</td>
+                                    <td><button type="button" class="btn btn-info btn-xs">Warm</button></td>
+                                    <td>
+                                        02/04/22
+                                    </td>
+                                    <td>
+                                        Send credential deck along with documents via
+                                        email.
+                                    </td>
+                                    <td><a href="" data-toggle="modal" data-target="#termcondition" class="btn btn-primary btn-xs has-icon btn-xs"><i class="mdi mdi-pencil-box-outline"></i> Edit</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="grid">
+            <div class="d-flex justify-content-between grid-header  mb-0">
+                <p class="card-title">Dormant clients due for relationship building call this week</p>
+            </div>
+            <div class="grid-body pb-4">
+                <div class="item-wrapper">
+                    <div class="table-responsive">
+                        <table id="Invested_proposals_table" class="data-table table table-striped dataTable dataTfullheight" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>CLIENT NAME</th>
+                                    <th>DESIGNATION</th>
+                                    <th>COMPANY NAME</th>
+                                    <th>LAST PROJECT</th>
+                                    <th>LAST ENGAGED</th>
+                                    <th>COMMENTS</th>
+                                    <th class="text-left">ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Gangubai Mhatre</td>
+                                    <td>Procurement Manager</td>
+                                    <td>Acenture</td>
+                                    <td>
+                                        01/01/22
+                                    </td>
+                                    <td>
+                                        04/04/22
+                                    </td>
+                                    <td>No requirement of services as of now. </td>
+                                    <td><a href="" data-toggle="modal" data-target="#termcondition" class="btn btn-primary btn-xs has-icon btn-xs"><i class="mdi mdi-pencil-box-outline"></i> Edit</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Sridevi Sahastrabudhi</td>
+                                    <td>Localization Manager</td>
+                                    <td>Amazon India</td>
+                                    <td>12/12/21 </td>
+                                    <td>
+                                        03/04/22
+                                    </td>
+                                    <td>Project requirement is not there.</td>
+                                    <td><a href="" data-toggle="modal" data-target="#termcondition" class="btn btn-primary btn-xs has-icon btn-xs"><i class="mdi mdi-pencil-box-outline"></i> Edit</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Harshita Chaddha</td>
+                                    <td>Assistant Sourcing Manager</td>
+                                    <td>Indegene Pharma Research</td>
+                                    <td>30/11/21</td>
+                                    <td>
+                                        02/04/22
+                                    </td>
+                                    <td>Doesn't like our rates and services.</td>
+                                    <td><a href="" data-toggle="modal" data-target="#termcondition" class="btn btn-primary btn-xs has-icon btn-xs"><i class="mdi mdi-pencil-box-outline"></i> Edit</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---Body Data end-->

@@ -1,0 +1,44 @@
+﻿@model PMSMaster.Entity.Models.Users
+
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Details</title>
+</head>
+<body>
+    <h1>User Details</h1>
+
+    <div>
+        <label>Name:</label>
+        <span>@Model.Name</span>
+    </div>
+
+    @* <div>
+        <label>Client Secret Key:</label>
+        <span>@Model.ClientSecretKey</span>
+    </div> *@
+
+    <div>
+        <label>Login ID:</label>
+        <span>@Model.LoginId</span>
+    </div>
+
+    <div>
+        <label>Password:</label>
+        <span>@Model.password</span>
+    </div>
+
+    <div>
+        <a href="@Url.Action("Edit", "User", new { id = Model.UserId })">Edit</a>
+    </div>
+
+    <div>
+        <a href="@Url.Action("Index", "User")">Back to List</a>
+    </div>
+</body>
+</html>

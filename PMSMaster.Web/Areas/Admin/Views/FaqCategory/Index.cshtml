@@ -1,0 +1,73 @@
+﻿@model IEnumerable<PMSMaster.Entity.Models.FaqCategory>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!---bredcrumb start-->
+<div class="viewport-header">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb has-arrow">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="#">Manage Faq Category</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Faq Category List</li>
+        </ol>
+    </nav>
+</div>
+<!--breadcrumb end-->
+<!--Body Data-->
+<div class="row">
+    <div class="col-12 pt-1 pb-4 d-flex justify-content-between align-items-center">
+        <h4>Faq Category List</h4>
+        <a href="@Url.Action("Create", "FaqCategory", new { area="Admin"})" class="btn btn-blue  w-80 h-35" style="text-align:right;">Add New</a>
+    </div>
+</div>
+<!--table row-->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="grid">
+            <div class="grid-header mb-0">
+                <p class="card-title">Prospects Reached Out Today</p>
+            </div>
+            <div class="grid-body pb-4">
+                <div class="item-wrapper">
+                    <div class="table-responsive">
+                        <table id="Invested_proposals_table" class="data-table table table-striped dataTable dataTfullheight" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>S.NO.</th>
+                                    <th>Faq Category Title</th>                                    
+                                    <th>Status</th>
+                                    <th class="text-left">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>                                
+                                @foreach (var item in Model)
+                                {
+                                    string btnClass = item.Status ? "btn btn-success  btn-xs" : "btn btn-danger  btn-xs";
+                                    <tr>
+                                        <td>@item.FaqCategoryId</td>
+                                        <td>@item.Title</td>                                      
+                                        <td><button type="button" class="@btnClass">Active</button></td>
+                                        <td>
+                                            <a href="@Url.Action("Edit","FaqCategory",new { Id=item.FaqCategoryId, Area ="Admin"})" class="btn btn-primary btn-xs has-icon btn-xs"><i class="mdi mdi-pencil-box-outline"></i> Edit</a>
+                                            <a href="@Url.Action("Delete","FaqCategory",new { Id=item.FaqCategoryId, Area ="Admin"})" class="btn btn-danger btn-xs has-icon btn-xs"><i class="mdi mdi-delete m-0"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---Body Data end-->
