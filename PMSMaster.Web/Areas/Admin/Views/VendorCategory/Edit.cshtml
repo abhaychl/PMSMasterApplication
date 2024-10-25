@@ -1,8 +1,10 @@
-﻿@model PMSMaster.Entity.Models.CheckListMaster
+﻿@model PMSMaster.Entity.Models.VendorCategory
+
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 
 <!---bredcrumb start-->
 <div class="viewport-header">
@@ -12,9 +14,9 @@
                 <a href="#">Dashboard</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="#">Manage CheckList Master </a>
+                <a href="#">Manage VendorCategory</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Add CheckList Master</li>
+            <li class="breadcrumb-item active" aria-current="page">Edit VendorCategory</li>
         </ol>
     </nav>
 </div>
@@ -22,28 +24,26 @@
 <!--Body Data-->
 <div class="row">
     <div class="col-12 pt-1 pb-4 d-flex justify-content-between align-items-center">
-        <h4>Add New CheckList Master</h4> <a href="@Url.Action("Index", "CheckListMaster", new { area="Admin"})" class="btn btn-blue  w-80 h-35"> <button class="btn btn-blue  w-80 h-35" data-toggle="modal" data-target="#termcondition">View All</button> </a>
-        </div>
+        <h4>Edit VendorCategory</h4>
+        <a href="@Url.Action("Index", "VendorCategory", new { area="Admin"})" class="btn btn-blue  w-80 h-35"> <button class="btn btn-blue  w-80 h-35" data-toggle="modal" data-target="#termcondition">View All Category</button> </a>
+    </div>
 </div>
 <!--table row-->
 <div class="row">
     <div class="col-lg-12">
         <div class="grid">
             <div class="d-flex justify-content-between align-items-center grid-header mb-0">
-                <p class="card-title">Add New CheckList Master</p>
+                <p class="card-title">Edit VendorCategory</p>
             </div>
             <div class="grid-body pb-4">
                 <div class="item-wrapper">
-                    @using (Html.BeginForm("Create", "CheckListMaster", FormMethod.Post))
+                    @using (Html.BeginForm("Edit", "VendorCategory", FormMethod.Post))
                     {
+                        @Html.HiddenFor(m => m.Id)
+
                         <div class="row">
-                            <div class="form-group">
-                                <label for="ParentCategoryId">Category:</label>
-                                @Html.DropDownList("CheckListCategoryId", new SelectList(ViewBag.Category, "Id", "Name"), "Select Category", new { @class = "form-control" })
-                            </div>
                             <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                 <label for="inputEmail1">Name</label>
-
                                 @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Name" })
                                 <span class="YError">@Html.ValidationMessageFor(x => x.Name)</span>
                             </div>
@@ -56,10 +56,11 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-sm btn-primary">ADD NEW</button>
+                        <button type="submit" class="btn btn-sm btn-primary">Update</button>
                     }
                 </div>
             </div>
         </div>
     </div>
 </div>
+

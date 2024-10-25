@@ -63,12 +63,27 @@ builder.Services.AddScoped<ISoftwareCategoryRepository, SoftwareCategoryReposito
 builder.Services.AddScoped<ICheckListCategoryRepository, CheckListCategoryRepository>();
 builder.Services.AddScoped<ICheckListMasterRepository, CheckListMasterRepository>();
 builder.Services.AddScoped<IVendorTypeRepository, VendorTypeRepository>();
+builder.Services.AddScoped<IRequisitionRepository, RequisitionRepository>();
+builder.Services.AddScoped<IVendorCategoryRepository, VendorCategoryRepository>();
+builder.Services.AddScoped<IVendorCategoryDocumentRepository, VendorCategoryDocumentRepository>();
+builder.Services.AddScoped<ICommonRepository, CommonRepository>();
 
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme;
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader()
+                   .WithExposedHeaders("Access-Control-Allow-Origin");
+        });
+});
 //string configVal = "https://PMSMasteropenid.chlsoftech.com";
 //string configVal = "https://PMSMasteropenid.chlserv.com";
 //string configVal = "https://localhost:7218";
@@ -91,8 +106,10 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 //{
-   
+
 //}
+app.UseCors("AllowAll");
+
 app.UseSwagger();
 app.UseSwaggerUI();
 

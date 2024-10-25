@@ -4,28 +4,27 @@ using System.Net.Http.Headers;
 using PMSMaster.Entity.Models;
 using PMSMaster.Utility;
 using PMSMaster.Web.Models;
-using System.Collections.Generic;
 
 namespace PMSMaster.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class LanguageController : Controller
+    public class VendorCategoryController : Controller
     {
         private IConfiguration _configuration;
         private BaseHttpClient _baseHttpClient;
 
-        public LanguageController(IConfiguration configuration, BaseHttpClient baseHttpClient)
+        public VendorCategoryController(IConfiguration configuration, BaseHttpClient baseHttpClient)
         {
             _configuration = configuration;
             _baseHttpClient = baseHttpClient;
         }
         public async Task<IActionResult> Index()
         {
-            var url = $"{_configuration["WebAPIUrl"]}Language/GetLanguage";
+            var url = $"{_configuration["WebAPIUrl"]}VendorCategory/GetVendorCategory";
             // Retrieve token from the cookie
             string token = Request.Cookies["AccessToken"];
 
-            var result = await _baseHttpClient.SendRequestAsync<IEnumerable<Language>>(token, "Get", url);
+            var result = await _baseHttpClient.SendRequestAsync<List<VendorCategory>>(token, "Get", url);
 
             if (!result.Success)
                 return View("Error", new ErrorViewModel { RequestId = result.ErrorMessage });
@@ -35,10 +34,10 @@ namespace PMSMaster.Web.Areas.Admin.Controllers
 
         public async Task<IActionResult> Detail(int Id)
         {
-            var url = $"{_configuration["WebAPIUrl"]}Language/GetLanguageByID?Id={Id}";
+            var url = $"{_configuration["WebAPIUrl"]}VendorCategory/GetVendorCategoryById?Id={Id}";
             string token = Request.Cookies["AccessToken"];
 
-            var result = await _baseHttpClient.SendRequestAsync<List<Language>>(token, "Get", url);
+            var result = await _baseHttpClient.SendRequestAsync<VendorCategory>(token, "Get", url);
 
             if (!result.Success)
                 return View("Error", new ErrorViewModel { RequestId = result.ErrorMessage });
@@ -49,10 +48,10 @@ namespace PMSMaster.Web.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int Id)
         {
-            var url = $"{_configuration["WebAPIUrl"]}Language/GetLanguageByID?Id={Id}";
+            var url = $"{_configuration["WebAPIUrl"]}VendorCategory/GetVendorCategoryById?Id={Id}";
             string token = Request.Cookies["AccessToken"];
 
-            var result = await _baseHttpClient.SendRequestAsync<Language>(token, "Get", url);
+            var result = await _baseHttpClient.SendRequestAsync<VendorCategory>(token, "Get", url);
 
             if (!result.Success)
                 return View("Error", new ErrorViewModel { RequestId = result.ErrorMessage });
@@ -61,15 +60,14 @@ namespace PMSMaster.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-
-        public async Task<IActionResult> Edit(Language Currency)
+        public async Task<IActionResult> Edit(VendorCategory vendorcategory)
         {
             if (ModelState.IsValid)
             {
-                var url = $"{_configuration["WebAPIUrl"]}Language/UpdateLanguage";
+                var url = $"{_configuration["WebAPIUrl"]}VendorCategory/UpdateVendorCategory";
                 string token = Request.Cookies["AccessToken"];
 
-                var result = await _baseHttpClient.SendRequestAsync<Language>(token, "Post", url, Currency);
+                var result = await _baseHttpClient.SendRequestAsync<VendorCategory>(token, "Post", url, vendorcategory);
 
                 if (!result.Success)
                 {
@@ -81,45 +79,44 @@ namespace PMSMaster.Web.Areas.Admin.Controllers
             }
             else
             {
-                return View(Currency);
+                return View(vendorcategory);
             }
         }
 
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            Language Currency = new Language();
-            return View(Currency);
+            VendorCategory vendorCategory = new VendorCategory();
+            return View(vendorCategory);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Language language)
+        public async Task<IActionResult> Create(VendorCategory vendorCategory)
         {
             if (ModelState.IsValid)
             {
-                var url = $"{_configuration["WebAPIUrl"]}Language/AddLanguage";
+                var url = $"{_configuration["WebAPIUrl"]}VendorCategory/AddVendorCategory";
                 string token = Request.Cookies["AccessToken"];
 
-                var result = await _baseHttpClient.SendRequestAsync<Language>(token, "Post", url, language);
+                var result = await _baseHttpClient.SendRequestAsync<VendorCategory>(token, "Post", url, vendorCategory);
 
                 if (!result.Success)
                 {
-                    return View(result.Data);
-                    //return View("Error", new ErrorViewModel { RequestId = result.ErrorMessage });
+                    return View(result.Data);                    
                 }
-
                 return RedirectToAction("Index");
             }
             else
             {
-                return View(language);
+                return View(vendorCategory);
             }
         }
+
 
         [HttpGet]
         public async Task<IActionResult> Delete(int Id)
         {
-            var url = $"{_configuration["WebAPIUrl"]}Language/DeleteLanguageByID?Id={Id}";
+            var url = $"{_configuration["WebAPIUrl"]}VendorCategory/DeleteVendorCategoryByID?Id={Id}";
 
             string token = Request.Cookies["AccessToken"];
 

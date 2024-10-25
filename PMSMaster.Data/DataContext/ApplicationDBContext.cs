@@ -51,6 +51,9 @@ namespace PMSMaster.Data.DataContext
         public DbSet<CheckListCategory> CheckListCategories { get; set; }
         public DbSet<CheckListMaster> CheckListMasters { get; set; }
         public DbSet<VendorType> VendorTypes { get; set; }
+        public DbSet<VendorCategory> VendorCategorys { get; set; }
+        public DbSet<VendorCategoryDocument> VendorCategoryDocuments { get; set; }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
