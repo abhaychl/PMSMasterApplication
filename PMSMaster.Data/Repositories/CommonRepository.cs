@@ -26,19 +26,18 @@ namespace PMSMaster.Data.Repositories
             
             if(request.IncludeVendorTypes)
                 response.VendorTypes = await _dbContext.VendorTypes.AsNoTracking().Where(x => x.IsDeleted == false).ToListAsync();
-            if (request.IncludeVendorTypes)
+            if (request.IncludeLanguages)
                 response.Languages = await _dbContext.Languages.AsNoTracking().Where(x => x.IsDeleted == false).ToListAsync();
            
             if (request.IncludeClientIndustries)
                 response.ClientIndustries = await _dbContext.ClientIndustries.AsNoTracking().Where(x => x.IsDeleted == false).ToListAsync();
-            if (request.IncludeClientIndustries)
+            if (request.IncludeCurrencies)
                 response.Currencies = await _dbContext.Currency.AsNoTracking().Where(x => x.IsDeleted == false).ToListAsync();
-            if (request.IncludeClientIndustries)
+            if (request.IncludeServices)
                 response.Services = await _dbContext.Services.AsNoTracking().Where(x => x.IsDeleted == false).ToListAsync();
-            if (request.IncludeClientIndustries)
+            if (request.IncludeTranslationTools)
                 response.TranslationTools = await _dbContext.TranslationTools.AsNoTracking().Where(x => x.IsDeleted == false).ToListAsync();
-            if (request.IncludeClientIndustries)
-                response.TranslationTools = await _dbContext.TranslationTools.AsNoTracking().Where(x => x.IsDeleted == false).ToListAsync();
+            
             if (request.IncludeCountries)
                 response.Countries =await _dbContext.Countries.AsNoTracking().Where(x => x.IsDeleted == false).ToListAsync();
             return response;
