@@ -66,10 +66,10 @@ namespace PMSMaster.Api.Controllers
             keyPariCollection.Add("scope", "mobile");
             keyPariCollection.Add("grant_type", "client_credentials");
             string url = $"{_configuration["IdUrl"]}/connect/token";
-            return GenrateToken(httpClient, keyPariCollection, user.UserId, url, user.Role?.Name, user.RoleId, user.TargetAmount).Result;
+            return GenrateToken(httpClient, keyPariCollection, user.UserId, url, user.Role?.Name, user.RoleId, user.TargetAmount,user.Name).Result;
         }
 
-        private static async Task<IActionResult> GenrateToken(HttpClient httpClient, Dictionary<string, string> keyPariCollection, int userId, string url, string? userRole, int? RoleId, double? TargetAmount)
+        private static async Task<IActionResult> GenrateToken(HttpClient httpClient, Dictionary<string, string> keyPariCollection, int userId, string url, string? userRole, int? RoleId, double? TargetAmount,string Name)
         {
 
             var contentresult = new ContentResult();
@@ -97,6 +97,7 @@ namespace PMSMaster.Api.Controllers
                     json["Role"] = userRole;
                     json["RoleId"] = RoleId;
                     json["Target"] = TargetAmount;
+                    json["Name"] = Name;
 
                     contentresult.Content = json.ToString();
                     return contentresult;
