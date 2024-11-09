@@ -40,7 +40,11 @@ namespace PMSMaster.Data.Repositories
             
             if (request.IncludeCountries)
                 response.Countries =await _dbContext.Countries.AsNoTracking().Where(x => x.IsDeleted == false).ToListAsync();
+            if (request.IncludeVendorCategory)
+                response.VendorCategories = await _dbContext.VendorCategorys.AsNoTracking().Where(x => x.IsDeleted == false).ToListAsync();
             return response;
         }
+
+      
     }
 }
