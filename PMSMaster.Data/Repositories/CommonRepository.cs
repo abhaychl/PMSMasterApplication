@@ -12,6 +12,7 @@ namespace PMSMaster.Data.Repositories
     public interface ICommonRepository : IGenericAsyncRepository<VendorType>
     {
         Task<dynamic> GetMasterData(MasterDataRequest request);
+        Task<List<States>> GetStateByCountryId(int CountryId);
     }
     public class CommonRepository : GenericAsyncRepository<VendorType>, ICommonRepository
     {
@@ -45,6 +46,9 @@ namespace PMSMaster.Data.Repositories
             return response;
         }
 
-      
+        public async Task<List<States>> GetStateByCountryId(int CountryId)
+        {
+           return  await _dbContext.States.AsNoTracking().Where(x => x.CountryId == CountryId).ToListAsync();            
+        }
     }
 }

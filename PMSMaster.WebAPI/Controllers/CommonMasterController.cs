@@ -34,7 +34,24 @@ namespace PMSMaster.WebAPI.Controllers
                 });
             }
         }
-        
-    
+
+        [HttpGet]
+        public async Task<IActionResult> GetStateByCountryId(int CountryId)
+        {
+            try
+            {
+                var Countries = await _commonRepository.GetStateByCountryId(CountryId);
+                return Ok(Countries);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    error = "ServerError",
+                    message = ex.Message
+                });
+            }
+        }
+
     }
 }
