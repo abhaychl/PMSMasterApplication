@@ -16,5 +16,7 @@ namespace PMSMaster.Entity.Models
 
         [Required]
         public string Name { get; set; }
+
+        public int ApplicationId { get; set; }
     }
 }

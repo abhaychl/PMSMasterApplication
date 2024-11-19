@@ -32,6 +32,8 @@ namespace PMSMaster.Data.Repositories
            
             if (request.IncludeClientIndustries)
                 response.ClientIndustries = await _dbContext.ClientIndustries.AsNoTracking().Where(x => x.IsDeleted == false).ToListAsync();
+            if (request.IncludeState)
+                response.States = await _dbContext.States.AsNoTracking().Where(x => x.IsDeleted == false).ToListAsync();
             if (request.IncludeCurrencies)
                 response.Currencies = await _dbContext.Currency.AsNoTracking().Where(x => x.IsDeleted == false).ToListAsync();
             if (request.IncludeServices)
@@ -43,6 +45,7 @@ namespace PMSMaster.Data.Repositories
                 response.Countries =await _dbContext.Countries.AsNoTracking().Where(x => x.IsDeleted == false).ToListAsync();
             if (request.IncludeVendorCategory)
                 response.VendorCategories = await _dbContext.VendorCategorys.AsNoTracking().Where(x => x.IsDeleted == false).ToListAsync();
+
             return response;
         }
 

@@ -17,6 +17,7 @@ namespace PMSMaster.Entity.JsonModels
         public bool IncludeServices { get; set; }
         public bool IncludeTranslationTools { get; set; }
         public bool IncludeCountries { get; set; }
+        public bool IncludeState { get; set; }
         public bool IncludeVendorCategory { get; set; }
     }
     public class MasterDataResponse
@@ -28,6 +29,7 @@ namespace PMSMaster.Entity.JsonModels
         public List<Services> Services { get; set; }
         public List<TranslationTools> TranslationTools { get; set; }
         public List<Countries> Countries { get; set; }
+        public List<States> States { get; set; }
         public List<VendorCategory> VendorCategories { get; set; }
     }
 }

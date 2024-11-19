@@ -51,6 +51,7 @@ namespace PMSMaster.Data.DataContext
         public DbSet<VendorType> VendorTypes { get; set; }
         public DbSet<VendorCategory> VendorCategorys { get; set; }
         public DbSet<VendorCategoryDocument> VendorCategoryDocuments { get; set; }
+        public DbSet<Applications> Applications { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Users>().HasKey(x => x.UserId);
