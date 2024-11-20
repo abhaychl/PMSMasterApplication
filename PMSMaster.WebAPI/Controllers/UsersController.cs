@@ -35,8 +35,30 @@ namespace PMSMaster.WebAPI.Controllers
                     message = ex.Message
                 });
             }
-        }
+
         
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetLMSusers()
+        {
+            try
+            {
+                var users =await _userRepository.GetLMSUsers();
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    error = "ServerError",
+                    message = ex.Message
+                });
+            }
+        }
+
+
+
         [HttpGet]
         public IActionResult GetUserByID(int Id)
         {
@@ -62,7 +84,7 @@ namespace PMSMaster.WebAPI.Controllers
                 });
             }
         }
-        
+
         [HttpGet]
         public IActionResult GetUsersByRoleID(int Id)
         {
@@ -88,7 +110,7 @@ namespace PMSMaster.WebAPI.Controllers
                 });
             }
         }
-       
+
         [HttpGet]
         public IActionResult GetUsersWithoutGroup(int Id)
         {
@@ -114,7 +136,7 @@ namespace PMSMaster.WebAPI.Controllers
                 });
             }
         }
-        
+
         [HttpPost]
         public IActionResult AddUser(Users users)
         {
@@ -132,7 +154,7 @@ namespace PMSMaster.WebAPI.Controllers
                 });
             }
         }
-        
+
         [HttpPost]
         public IActionResult UpdateUser(Users users)
         {

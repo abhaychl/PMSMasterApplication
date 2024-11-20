@@ -11,6 +11,7 @@ namespace PMSMaster.Data.Repositories
     public interface IUserRepository : IGenericAsyncRepository<Users>
     {
         List<Users> GetUsers();
+        Task<List<Users>> GetLMSUsers();
         Users GetUserById(int id);
         List<Users> GetUsersByRoleID(int id);
         List<Users> GetUsersWithoutGroup(int id);
@@ -59,7 +60,7 @@ namespace PMSMaster.Data.Repositories
                 .Include(x => x.Role)
                 .Where(u => !_dbContext.UserGroupingUsers
                     .Any(ugu => ugu.UserId == u.UserId && !ugu.IsDeleted) &&
-                    u.Role.Priority > getPriorityId && 
+                    u.Role.Priority > getPriorityId &&
                     u.IsDeleted == false)
                 .ToList();
 
@@ -75,6 +76,14 @@ namespace PMSMaster.Data.Repositories
         public List<Users> GetUsers()
         {
             var lstUser = _dbContext.Users.Include("Department").Include("Role").Include("UserVertical").Include("OfficeLocation").Where(x => x.IsDeleted == false).ToList();
+            return lstUser;
+        }
+        public async Task<List<Users>> GetLMSUsers()
+        {
+            var lstUser = await (from u in _dbContext.Users.AsNoTracking()
+                                 join rol in _dbContext.Role.AsNoTracking() on u.RoleId equals rol.RoleId
+                                 where rol.ApplicationId == 2
+                                 select u).ToListAsync();
             return lstUser;
         }
 
