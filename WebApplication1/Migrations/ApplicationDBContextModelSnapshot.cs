@@ -1084,6 +1084,23 @@ namespace WebApplication1.Migrations
                     b.ToTable("Role");
                 });
 
+            modelBuilder.Entity("PMSMaster.Entity.Models.ServiceType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ServiceTypes");
+                });
+
             modelBuilder.Entity("PMSMaster.Entity.Models.Services", b =>
                 {
                     b.Property<int>("ServiceId")

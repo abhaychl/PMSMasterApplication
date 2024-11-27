@@ -11,4 +11,12 @@ namespace PMSMaster.Entity.Models
         [Required]
         public string Unit { get; set; }
     }
+
+    public class ServiceType
+    {
+        public int Id { get; set; }
+
+        [Required]
+        public string Name { get; set; }
+    }
 }

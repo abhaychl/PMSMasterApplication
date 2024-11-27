@@ -45,7 +45,13 @@ namespace PMSMaster.Data.Repositories
                 response.Countries =await _dbContext.Countries.AsNoTracking().Where(x => x.IsDeleted == false).ToListAsync();
             if (request.IncludeVendorCategory)
                 response.VendorCategories = await _dbContext.VendorCategorys.AsNoTracking().Where(x => x.IsDeleted == false).ToListAsync();
+            if (request.IncludeUnits)
+                response.Units = await _dbContext.Units.AsNoTracking().Where(x => x.IsDeleted == false).ToListAsync();
+            if (request.IncludeServicetype)
+                response.ServiceTypes = await _dbContext.ServiceTypes.AsNoTracking().ToListAsync();
 
+            if (request.IncludeUsers)
+                response.Users = await _dbContext.Users.AsNoTracking().Select(x=>new { Id=x.UserId,Name=x.Name}).ToListAsync();
             return response;
         }
 

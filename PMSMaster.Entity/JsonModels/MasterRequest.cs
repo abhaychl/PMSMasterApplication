@@ -1,4 +1,5 @@
-﻿using PMSMaster.Entity.Models;
+﻿using NuGet.Protocol;
+using PMSMaster.Entity.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
@@ -19,6 +20,9 @@ namespace PMSMaster.Entity.JsonModels
         public bool IncludeCountries { get; set; }
         public bool IncludeState { get; set; }
         public bool IncludeVendorCategory { get; set; }
+        public bool IncludeUnits { get; set; }
+        public bool IncludeServicetype { get; set; }
+        public bool IncludeUsers { get; set; }
     }
     public class MasterDataResponse
     {
@@ -31,5 +35,9 @@ namespace PMSMaster.Entity.JsonModels
         public List<Countries> Countries { get; set; }
         public List<States> States { get; set; }
         public List<VendorCategory> VendorCategories { get; set; }
+        public List<Unit> Units { get; set; }
+        public List<PMSMaster.Entity.Models.ServiceType> ServiceTypes { get; set; }
+
+        public dynamic Users { get; set; }
     }
 }
