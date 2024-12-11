@@ -23,6 +23,8 @@ namespace PMSMaster.Entity.JsonModels
         public bool IncludeUnits { get; set; }
         public bool IncludeServicetype { get; set; }
         public bool IncludeUsers { get; set; }
+        public bool IncludeWorkType { get; set; }
+        public bool IncludeWorkNature { get; set; }
     }
     public class MasterDataResponse
     {
@@ -36,8 +38,10 @@ namespace PMSMaster.Entity.JsonModels
         public List<States> States { get; set; }
         public List<VendorCategory> VendorCategories { get; set; }
         public List<Unit> Units { get; set; }
-        public List<PMSMaster.Entity.Models.ServiceType> ServiceTypes { get; set; }
-
+        public List<ServiceType> ServiceTypes { get; set; }
         public dynamic Users { get; set; }
+        public List<WorkType> WorkTypes { get; set; }
+        public List<WorkNature> WorkNatures { get; set; }
+       
     }
 }

@@ -1597,6 +1597,40 @@ namespace WebApplication1.Migrations
                     b.ToTable("VendorTypes");
                 });
 
+            modelBuilder.Entity("PMSMaster.Entity.Models.WorkNature", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WorkNatures");
+                });
+
+            modelBuilder.Entity("PMSMaster.Entity.Models.WorkType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WorkTypes");
+                });
+
             modelBuilder.Entity("PMSMaster.Entity.Models.Cities", b =>
                 {
                     b.HasOne("PMSMaster.Entity.Models.Countries", "Country")

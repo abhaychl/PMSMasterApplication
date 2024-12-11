@@ -52,6 +52,13 @@ namespace PMSMaster.Data.Repositories
 
             if (request.IncludeUsers)
                 response.Users = await _dbContext.Users.AsNoTracking().Select(x=>new { Id=x.UserId,Name=x.Name}).ToListAsync();
+
+            if (request.IncludeWorkType)
+                response.WorkTypes = await _dbContext.WorkTypes.AsNoTracking().Select(x => new WorkType{ Id = x.Id, Name = x.Name }).ToListAsync();
+
+            if (request.IncludeWorkNature)
+                response.WorkNatures = await _dbContext.WorkNatures.AsNoTracking().Select(x => new WorkNature{ Id = x.Id, Name = x.Name }).ToListAsync();
+
             return response;
         }
 

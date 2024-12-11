@@ -56,6 +56,8 @@ namespace PMSMaster.Data.DataContext
 
         public DbSet<Applications> Applications { get; set; }
         public DbSet<ServiceType> ServiceTypes { get; set; }
+        public DbSet<WorkType> WorkTypes { get; set; }
+        public DbSet<WorkNature> WorkNatures { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

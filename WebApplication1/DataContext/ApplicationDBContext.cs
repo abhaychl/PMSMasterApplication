@@ -31,7 +31,6 @@ namespace PMSMaster.Data.DataContext
         public DbSet<Faq> Faq { get; set; }
         public DbSet<DeskTime> DeskTime { get; set; }
         public DbSet<Email> Email { get; set; }
-        
         public DbSet<Client> Client { get; set; }
         public DbSet<ClientOffice> ClientOffices { get; set; }
         public DbSet<ClientRemark> ClientRemark { get; set; }
@@ -53,6 +52,8 @@ namespace PMSMaster.Data.DataContext
         public DbSet<VendorCategoryDocument> VendorCategoryDocuments { get; set; }
         public DbSet<Applications> Applications { get; set; }
         public DbSet<ServiceType> ServiceTypes { get; set; }
+         public DbSet<WorkType> WorkTypes { get; set; }
+        public DbSet<WorkNature> WorkNatures { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Users>().HasKey(x => x.UserId);
