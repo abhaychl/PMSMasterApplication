@@ -17,6 +17,7 @@ namespace PMSMaster.Data.Repositories
         List<Users> GetUsersWithoutGroup(int id);
         Users GetUserByuserIdPasswor(string loginId, string password);
         Users GetUserByClientSecret(string clientID);
+        Task<List<Users>> GetQCUsers();
 
     }
     public class UserRepository : GenericAsyncRepository<Users>, IUserRepository
@@ -91,6 +92,15 @@ namespace PMSMaster.Data.Repositories
         {
             var user = _dbContext.Users.Include("Department").Include("Role").Include("UserVertical").Include("OfficeLocation").FirstOrDefault(x => x.ClientSecretKey == clientID);
             return user;
+        }
+
+        public async Task<List<Users>> GetQCUsers()
+        {
+            var lstUser = await (from u in _dbContext.Users.AsNoTracking()
+                                 join rol in _dbContext.Role.AsNoTracking() on u.RoleId equals rol.RoleId
+                                 where (rol.RoleId == 5 || rol.RoleId == 11)
+                                 select u).OrderBy(c=>c.Name).ToListAsync();
+            return lstUser;
         }
     }
 }

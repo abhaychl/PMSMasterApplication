@@ -56,7 +56,23 @@ namespace PMSMaster.WebAPI.Controllers
                 });
             }
         }
-
+        [HttpGet]
+        public async Task<IActionResult> GetQCUsers()
+        {
+            try
+            {
+                var users = await _userRepository.GetQCUsers();
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    error = "ServerError",
+                    message = ex.Message
+                });
+            }
+        }
 
 
         [HttpGet]
