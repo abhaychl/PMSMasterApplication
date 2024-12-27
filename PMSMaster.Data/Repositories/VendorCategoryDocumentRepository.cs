@@ -36,7 +36,7 @@ namespace PMSMaster.Data.Repositories
                                            Category = vc.Name,
                                            AddedBy = vd.AddedBy,
                                            IsRequired=vd.IsRequired,
-
+                                           VendorCategoryId=vd.VendorCategoryId
                                        }).ToList();
 
              
