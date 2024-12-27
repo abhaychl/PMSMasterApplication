@@ -34,7 +34,8 @@ namespace PMSMaster.Data.Repositories
                                            ModifiedBy = vd.ModifiedBy,
                                            Status = vd.Status,
                                            Category = vc.Name,
-                                           AddedBy = vd.AddedBy
+                                           AddedBy = vd.AddedBy,
+                                           IsRequired=vd.IsRequired,
 
                                        }).ToList();
 

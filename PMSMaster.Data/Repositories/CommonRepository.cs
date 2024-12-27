@@ -59,6 +59,7 @@ namespace PMSMaster.Data.Repositories
             if (request.IncludeWorkNature)
                 response.WorkNatures = await _dbContext.WorkNatures.AsNoTracking().Select(x => new WorkNature{ Id = x.Id, Name = x.Name }).ToListAsync();
 
+           
             return response;
         }
 
